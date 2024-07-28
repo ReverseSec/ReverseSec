@@ -1,0 +1,101 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Press Start 2P', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.typing-effect {
+    font-family: 'Press Start 2P', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2em; 
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.typing-effect:hover {
+    color: rgb(146, 236, 123); 
+    transform: scale(1.1); 
+}
+
+.footer {
+    position: absolute;
+    bottom: 6px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75em; 
+    font-family: 'Press Start 2P', cursive; 
+    transition: color 0.3s ease, transform 0.3s ease; /* Transition for smooth color and scale change */
+}
+
+.footer:hover {
+    color: rgb(146, 236, 123); /* Change color on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    50% { border-color: transparent }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .typing-effect {
+        font-size: 0.9em; 
+    }
+    .footer {
+        font-size: 0.6em; /* Adjust footer font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .typing-effect {
+        font-size: 0.7em; 
+    }
+    .footer {
+        font-size: 0.5em; /* Adjust footer font size */
+    }
+}
+
+@media (max-width: 320px) {
+    .typing-effect {
+        font-size: 0.5em; 
+    }
+    .footer {
+        font-size: 0.4em; /* Adjust footer font size */
+    }
+}
+
+@media (max-width: 240px) {
+    .typing-effect {
+        font-size: 0.4em; 
+    }
+    .footer {
+        font-size: 0.3em; /* Adjust footer font size */
+    }
+}
+
+@media (max-width: 200px) {
+    .typing-effect {
+        font-size: 0.3em; 
+    }
+    .footer {
+        font-size: 0.3em; /* Adjust footer font size */
+    }
+}
