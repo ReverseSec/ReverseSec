@@ -1,4 +1,4 @@
-const text = "ReverseSec specializes in vulnerability research for Windows applications, focusing on enhancing application security. We identify and address weaknesses within the Windows architecture to protect software from emerging threats and ensure robust defenses for users and organizations!";
+const text = "ReverseSec is a dedicated team of security researchers focused on enhancing security within the Windows architecture. Our mission is to identify and report vulnerabilities safeguarding software against emerging threats. We are committed to delivering robust defenses that protect users and organizations, ensuring a secure digital landscape";
 const typingElement = document.getElementById('typingEffect');
 const contactElement = document.querySelector('.contact');
 const contactArrowElement = document.querySelector('.contact-arrow');
