@@ -32,6 +32,16 @@ body, html {
 .header:hover {
     transform: translate(-50%, 0) scale(1.05);
 }
+.header img {
+    width: 8em; /* Matches the text size */
+    height: auto; /* Maintains aspect ratio */
+    transition: transform 0.3s ease;
+    vertical-align: middle; 
+}
+
+.header img:hover {
+    transform: scale(1.05);
+}
 
 .container {
     position: absolute;
@@ -208,7 +218,7 @@ body, html {
 
     .team {
         font-size: 0.3em;
-        left: 70%;
+        left: 70%; 
         transform: translate(-50%, 0);
     }
 
@@ -228,7 +238,7 @@ body, html {
         transform: translate(-50%, 0); 
     }
     
-    .header {
+    .header img {
         font-size: 0.3em;
     }
 
