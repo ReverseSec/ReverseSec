@@ -23,7 +23,7 @@
         <div class="col-lg-12">
           <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="index.html">
-              <span class="fw-bold text-white startup-logo">ReverseSec.</span>
+              <span class="fw-bold text-white startup-logo">ReverseSec</span>
             </a>
           </nav>
         </div>
@@ -77,14 +77,15 @@
           
               var chart = root.container.children.push(
                 am5percent.PieChart.new(root, {
-                  endAngle: 270
+                  endAngle: 270 
                 })
               );
           
+              // Create a pie series and configure it
               var series = chart.series.push(
                 am5percent.PieSeries.new(root, {
-                  valueField: "value",
-                  categoryField: "category",
+                  valueField: "value", 
+                  categoryField: "category", 
                   endAngle: 270
                 })
               );
@@ -93,28 +94,26 @@
                 endAngle: -90
               });
           
-              series.data.setAll([{
-                category: "Secure",
-                value: 70
-              }, {
-                category: "Vulnerable",
-                value: 30 
-              }]);
+              series.data.setAll([
+                { category: "Misconfiguration Security Flaws", value: 70 },
+                { category: "Legacy Component Flaws", value: 30 }
+              ]);
           
               series.labels.template.setAll({
-                fill: am5.color(0xFFFFFF) 
+                fill: am5.color(0xFFFFFF), 
+                fontSize: "12px" 
               });
           
-              series.labels.template.adapters.add("fill", function(fill, target) {
-                return am5.color(0xFFFFFF); 
-              });
-          
+             
               series.ticks.template.setAll({
                 stroke: am5.color(0xFFFFFF) 
               });
           
+            
               series.appear(1000, 100);
-            }); // end am5.ready()
+            });
+          </script>
+          
           </script>
         </div>
       </div>
@@ -145,7 +144,7 @@
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Comprehensive Vulnerability Assessment</h3>
               <p class="ud-feature-desc">
-                Identifies and analyzes vulnerabilities at various levels of software complexity, ranging from fundamental to advanced assessments.
+                Identifies and analyzes vulnerabilities across different levels of Windows software, from basic scans to advanced threat simulations.
               </p>
             </div>
           </div>
