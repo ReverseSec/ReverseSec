@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <title>ReverseSec</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-size: 15px;
+            font-family: 'Press Start 2P', monospace; 
+            background-color: white; 
+            color: rgb(22, 22, 22); 
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: blue; 
+            text-decoration: none; 
+        }
+        header, .content {
+            padding-left: 8px;
+        }
+        h1, h2, h3 {
+            color: rgb(0, 0, 0);
+            text-align: left;
+        }
+        .timestamp {
+            font-size: 9px; 
+            color: rgb(95, 95, 95); 
+            text-align: left;
+        }
+        .content {
+            width: 90%;
+            max-width: 800px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .content p {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .subheading {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        pre {
+            font-size: 13px;
+            font-family: 'Courier New', monospace; 
+            color: rgb(95, 95, 95); 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ReverseSec</h1>
+    </header>
+
+    <main class="content">
+        <h3>How I Accidentally Discovered a Critical Vulnerability in Easy Anti-Cheat</h3>
+        <p class="timestamp">idkhidden [2024-10-28]</p>
+        
+        <p class="subheading">Introduction</p>
+        <p>
+            In this write-up, I’ll walk you through the steps that led to my discovery of a critical vulnerability in Easy Anti-Cheat.
+        </p>
+        
+        <p class="subheading">Discovery</p>
+        <p>
+            It all started when I was exploring the EAC launcher to understand its security mechanisms. I wondered how difficult it would be to protect my own application. This curiosity led me to start reversing their launcher. After spending a solid day on this, I concluded that there were no proper certificate checks in place. With this and a proper configuration of settings.json, we can easily exploit the vulnerability.
+        </p>
+        
+        <p class="subheading">Exploit</p>
+        <p>
+            First, I removed the original game application and renamed my application to match the game's executable. In this case, since I was exploiting Fortnite, I renamed my application to FortniteClient-Win64-Shipping.exe. Since the EAC launcher module doesn't check the validity of the certificate in the Easy Anti-Cheat folder. Using this knowledge, I completely removed the certificates from the folder. Next, I turned to the settings.json file, where I found the correct settings that not only validated but also bypassed the checks, thus successfully completing the exploit. The settings.json file was as follows:
+        </p>
+        <pre>
+        {
+            "title"                                          :"Fortnite",
+            "executable"                                    : "FortniteClient-Win64-Shipping.exe",
+            "productid"                                     : "prod-fn",
+            "sandboxid"                                     : "fn",
+            "deploymentid"                                  : "62a9473a2dca46b29ccf17577fcf42d7",
+            "requested_splash"                              : "EasyAntiCheat/SplashScreen.png",
+            "wait_for_game_process_exit"                    : "false",
+            "hide_bootstrapper"                             : "false",
+            "hide_gui"                                      : "false"
+        }
+        </pre>
+        <p>
+            Now, if we launch the Easy Anti-Cheat launcher, our application will function seamlessly under EAC protection.
+        </p>
+
+        <p class="subheading">POC</p>
+        <p>
+            <video width="500" height="300" controls>
+                <source src="/assets/EAC.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </p>
+
+        <p class="subheading">Impact</p>
+        <p>
+            Bypassing EAC protection allows an attacker to run their own application under the guise of a legitimate game process. This could lead to several security impacts, including:
+        </p>
+        <p>Attackers could gain access to sensitive resources or functionalities within the protected application, which are typically restricted.</p>
+        <p>The vulnerability could be exploited to execute malicious software disguised as a game client, potentially compromising users’ systems.</p>
+        <p>Attackers could potentially gather sensitive information from users or the environment that the application operates in.</p>
+
+        <p class="subheading">Conclusion</p>
+        <p>
+            After finding the vulnerability, I immediately reported it to Epic Games. Unfortunately, upon submission, I was informed that my report was considered a duplicate of a similar issue raised in 2023, yet it has not been fixed. Anyways Thank you for reading my write-up!
+        </p>
+        <p>
+            <img src="/assets/eacReport.png" alt="Conclusion Image" width="300">
+        </p>
+              
+        <p class="subheading">Note</p>
+        <p>
+            This write-up is intended for educational purposes only.
+        </p>
+        
+    </main>
+</body>
+</html>
