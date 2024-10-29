@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <title>ReverseSec</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
@@ -48,13 +48,13 @@
         pre {
             font-size: 13px;
             font-family: 'Courier New', monospace; 
-            color: rgb(95, 95, 95); 
+            color: rgb(48, 47, 47); 
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>ReverseSec</h1>
+        <h1><a href="../index.html" style="text-decoration: none; color: inherit;">ReverseSec</a></h1>
     </header>
 
     <main class="content">
@@ -68,13 +68,13 @@
         
         <p class="subheading">Discovery</p>
         <p>
-            It all started when I was exploring the EAC launcher to understand its security mechanisms. I wondered how difficult it would be to protect my own application. This curiosity led me to start reversing their launcher. After spending a solid day on this, I concluded that there were no proper certificate checks in place. With this and a proper configuration of settings.json, we can easily exploit the vulnerability.
+            It all started when I was exploring the EAC launcher to understand its security mechanisms. I wondered how difficult it would be to protect my own application. This curiosity led me to start reversing their launcher. After spending a solid day on this, I concluded that there were no proper certificate checks in place. When I noticed the absence of these certificate checks, I got curious and started to think about what might happen if we removed the certificate from the certificate folder.
         </p>
         
         <p class="subheading">Exploit</p>
         <p>
-            First, I removed the original game application and renamed my application to match the game's executable. In this case, since I was exploiting Fortnite, I renamed my application to FortniteClient-Win64-Shipping.exe. Since the EAC launcher module doesn't check the validity of the certificate in the Easy Anti-Cheat folder. Using this knowledge, I completely removed the certificates from the folder. Next, I turned to the settings.json file, where I found the correct settings that not only validated but also bypassed the checks, thus successfully completing the exploit. The settings.json file was as follows:
-        </p>
+            First, I removed the original game application and renamed my application to match the game's executable. In this case, since I was exploiting Fortnite, I renamed my application to FortniteClient-Win64-Shipping.exe. Since the EAC launcher module doesn't check the validity of the certificate in the Easy Anti-Cheat folder. Using this knowledge, I completely removed the certificates from the folder. Next, I turned to the settings.json file, where I found the correct settings that not only validated but also bypassed the checks, thus successfully completing the exploit. </p>
+           <p> The modified settings.json file looked like this:</p>
         <pre>
         {
             "title"                                          :"Fortnite",
@@ -102,12 +102,10 @@
 
         <p class="subheading">Impact</p>
         <p>
-            Bypassing EAC protection allows an attacker to run their own application under the guise of a legitimate game process. This could lead to several security impacts, including:
+            Bypassing EAC protection enables attackers to run unauthorized applications as if they were legitimate game processes, leading to potential security impacts:
         </p>
-        <p>Attackers could gain access to sensitive resources or functionalities within the protected application, which are typically restricted.</p>
-        <p>The vulnerability could be exploited to execute malicious software disguised as a game client, potentially compromising users’ systems.</p>
-        <p>Attackers could potentially gather sensitive information from users or the environment that the application operates in.</p>
-
+        <p>Attackers could access restricted resources within the protected application.</p>
+        <p>The vulnerability could be exploited to run malicious software disguised as a game client, risking system compromise.</p>        
         <p class="subheading">Conclusion</p>
         <p>
             After finding the vulnerability, I immediately reported it to Epic Games. Unfortunately, upon submission, I was informed that my report was considered a duplicate of a similar issue raised in 2023, yet it has not been fixed. Anyways Thank you for reading my write-up!
