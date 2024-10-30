@@ -63,7 +63,7 @@
         
         <p class="subheading">Introduction</p>
         <p>
-            In this write-up, I’ll walk you through the steps that led to my discovery of a critical vulnerability in Easy Anti-Cheat.
+            In this write-up, I’ll walk you through how I discovered a critical vulnerability in Easy Anti-Cheat, allowing any application to be protected for free.
         </p>
         
         <p class="subheading">Discovery</p>
@@ -73,7 +73,7 @@
         
         <p class="subheading">Exploit</p>
         <p>
-            First, I removed the original game application and renamed my application to match the game's executable. In this case, since I was exploiting Fortnite, I renamed my application to FortniteClient-Win64-Shipping.exe. Since the EAC launcher module doesn't check the validity of the certificate in the Easy Anti-Cheat folder. Using this knowledge, I completely removed the certificates from the folder. Next, I turned to the settings.json file, where I found the correct settings that not only validated but also bypassed the checks, thus successfully completing the exploit. </p>
+            First, I removed the original game application and renamed my application to match the game's executable. In this case, I was exploiting Fortnite, I renamed my application to FortniteClient-Win64-Shipping.exe. Since the EAC launcher module doesn't check the validity of the certificate in the Easy Anti-Cheat folder. Using this knowledge, I completely removed the certificates from the folder. Next, I turned to the settings.json file, where I found the correct settings that not only validated but also bypassed the checks, thus successfully completing the exploit. </p>
            <p> The modified settings.json file looked like this:</p>
         <pre>
         {
