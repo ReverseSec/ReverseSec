@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <title>ReverseSec</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-size: 15px;
+            font-family: 'Press Start 2P', monospace; 
+            background-color: white; 
+            color: rgb(22, 22, 22); 
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: blue; 
+            text-decoration: none; 
+        }
+        header, .content {
+            padding-left: 8px;
+        }
+        h1, h2, h3 {
+            color: rgb(0, 0, 0);
+            text-align: left;
+        }
+        .timestamp {
+            font-size: 9px; 
+            color: rgb(95, 95, 95); 
+            text-align: left;
+        }
+        .content {
+            width: 90%;
+            max-width: 800px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .content p {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .subheading {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        pre {
+            font-size: 13px;
+            font-family: 'Courier New', monospace; 
+            color: rgb(48, 47, 47); 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="../index.html" style="text-decoration: none; color: inherit;">ReverseSec</a></h1>
+    </header>
+
+    <main class="content">
+        <h3>Effortless Themida Unpacking Using a Single Breakpoint without PE Execution</h3>
+        <p class="timestamp">idkhidden [2024-11-15]</p>
+        
+        <p class="subheading">Introduction</p>
+        <p>
+            While reverse engineering Themida, I discovered a method to unpack a Themida-protected binary and restore its Import Address Table (IAT) without executing the PE code, using a single hardware breakpoint. This approach was tested on Themida version 3.0.4.0 and is expected to work on newer versions as well.
+        </p>
+
+        <p class="subheading">Unpacking</p>
+
+        <p>
+            To begin, the first task is to disable the anti-debugging protections. This can be achieved by enabling ScyllaHide, which bypasses Themida’s basic anti-debugging mechanisms, allowing you to proceed with the unpacking process without interference.
+        </p>
+        
+        <p>
+            <img src="/assets/themida2.png" alt="ScyllaHide" width="600">
+        </p>
+        
+        <p>
+            Next, set an executive singleshoot hardware breakpoint on the .text section, typically the first section header in the PE. Once the breakpoint is in place, run the executable. It will begin executing but will break immediately upon hitting the hardware breakpoint in the .text section.
+        </p>
+        <p>
+            <img src="/assets/themida1.png" alt="Hardware Breakpoint" width="600">
+        </p>
+        
+        <p>
+            <img src="/assets/themida3.png" alt="Breakpoint Hit" width="600">
+        </p>
+        <p>
+            At this point, the binary will be in an unpacked state, with the IAT restored all without actually executing the binary code. You will now have full access to the unpacked contents of the PE, enabling further analysis or modification as needed.
+        </p>
+        <p>
+            <img src="/assets/themida4.png" alt="Unpacked" width="600">
+        </p>
+        
+        <p class="subheading">Packed</p>
+        <p>
+            <img src="/assets/themida5.png" alt="Packed Binary" width="600">
+        </p>
+
+        <p class="subheading">Unpacked</p>
+        <p>
+            <img src="/assets/themida6.png" alt="Unpacked Binary" width="600">
+        </p>
+
+        <p class="subheading">Conclusion</p>    
+        <p>
+            I hope this technique proves useful for those of you exploring reverse engineering or working with malware. Happy reversing!
+        </p>
+          
+        <p class="subheading">Acknowledgments</p>
+        <p>
+            <a href="https://x64dbg.com/" target="_blank" style="color: blue; text-decoration: none;">x64dbg</a>
+        </p>
+        <p>
+            <a href="https://github.com/x64dbg/ScyllaHide" target="_blank" style="color: blue; text-decoration: none;">ScyllaHide</a>
+        </p>
+        
+
+        <p class="subheading">Note</p>
+        <p>
+            This write-up was assisted by LLM for clarity and efficiency. All technical content is based on personal research.
+        </p>
+        
+    </main>
+</body>
+</html>
