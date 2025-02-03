@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ReverseSec</title>
     <style>
-         body {
+        body {
             font-size: 20px;
             font-family: 'Press Start 2P', monospace; 
             background-color: white; 
@@ -48,6 +48,15 @@
             font-size: 13px;
             font-family: 'Courier New', monospace; 
             color: rgb(48, 47, 47); 
+            background-color: #f8f9fa; 
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        video {
+            margin-top: 10px;
+            max-width: 100%;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
@@ -57,41 +66,51 @@
     </header>
 
     <main class="content">
-        <h3>Protecting your Application with Easy Anti-Cheat Rather Than the Actual Game.</h3>
+        <h3>Tricking Easy Anti-Cheat into Protecting Any Application</h3>
         <p class="timestamp">idkhidden [2024-10-28]</p>
         
         <p class="subheading">Introduction</p>
         <p>
-            In this write-up, I’ll walk you through how I discovered a critical vulnerability in Easy Anti-Cheat, allowing any application to be protected with EAC.
+            In this write-up, I’ll walk you through how I stumbled upon a critical vulnerability in Easy Anti-Cheat that makes it possible for any application to enjoy the cozy warmth of EAC protection—no questions asked. Spoiler alert: it’s ridiculously simple.
         </p>
         
         <p class="subheading">Discovery</p>
         <p>
-            It all started when I was exploring the EAC launcher to understand its security mechanisms. I wondered how difficult it would be to protect my own application. This curiosity led me to start reversing their launcher. After spending a solid day on this, I concluded that there were no proper certificate checks in place. When I noticed the absence of these certificate checks, I got curious and started to think about what might happen if we removed the certificate from the certificate folder.
+            Like most stories of unintentional chaos, this started with sheer curiosity. I was exploring the EAC launcher, trying to understand how it ticks. My question was innocent enough: How hard could it be to protect my own app with EAC?
+        </p>
+        <p>
+            I dug into the launcher, reverse-engineering my way through its logic. After a solid day of fiddling, I noticed something strange—or rather, something absent: there were no proper certificate checks in place. This was a bit like walking into a vault and realizing the lock was made of cardboard.
+        </p>
+        <p>
+            Naturally, I decided to poke the bear. What would happen if I just… removed the certificate from the EAC certificate folder? Would it throw a tantrum? Would it scream at me? Nope. It didn’t care.
         </p>
         
         <p class="subheading">Exploit</p>
         <p>
-            First, I removed the original game application and renamed my application to match the game's executable. In this case, I was exploiting Fortnite, I renamed my application to FortniteClient-Win64-Shipping.exe. Since the EAC launcher module doesn't check the validity of the certificate in the Easy Anti-Cheat folder. Using this knowledge, I completely removed the certificates from the folder. Next, I turned to the settings.json file, where I found the correct settings that not only validated but also bypassed the checks, thus successfully completing the exploit. </p>
-           <p> The modified settings.json file looked like this:</p>
+            Armed with this newfound lack of security, I decided to go all in. First, I removed the original game executable and replaced it with my own application. Specifically, I was messing with Fortnite at the time, so I renamed my app to <code>FortniteClient-Win64-Shipping.exe</code>.
+        </p>
+        <p>
+            Now, here’s the wild part: since the EAC launcher module doesn’t validate certificates, I completely removed the certificates from the folder. But wait, there’s more. I matched the settings.json file with the original configuration for the game.
+        </p>
+        <p>After matching it to look like this:</p>
         <pre>
-        {
-            "title"                                          :"Fortnite",
-            "executable"                                    : "FortniteClient-Win64-Shipping.exe",
-            "productid"                                     : "prod-fn",
-            "sandboxid"                                     : "fn",
-            "deploymentid"                                  : "62a9473a2dca46b29ccf17577fcf42d7",
-            "requested_splash"                              : "EasyAntiCheat/SplashScreen.png",
-            "wait_for_game_process_exit"                    : "false",
-            "hide_bootstrapper"                             : "false",
-            "hide_gui"                                      : "false"
-        }
+{
+    "title": "Fortnite",
+    "executable": "FortniteClient-Win64-Shipping.exe",
+    "productid": "prod-fn",
+    "sandboxid": "fn",
+    "deploymentid": "62a9473a2dca46b29ccf17577fcf42d7",
+    "requested_splash": "EasyAntiCheat/SplashScreen.png",
+    "wait_for_game_process_exit": "false",
+    "hide_bootstrapper": "false",
+    "hide_gui": "false"
+}
         </pre>
         <p>
-            Now, if we launch the Easy Anti-Cheat launcher, our application will function seamlessly under EAC protection.
+            I launched the EAC launcher. Lo and behold, my application was running under the full protection of Easy Anti-Cheat like it was Fortnite itself. Bravo, me.
         </p>
 
-        <p class="subheading">POC</p>
+        <p class="subheading">Proof of Concept (PoC)</p>
         <p>
             <video width="500" height="300" controls>
                 <source src="/assets/EAC.mp4" type="video/mp4">
@@ -101,23 +120,22 @@
 
         <p class="subheading">Impact</p>
         <p>
-            Bypassing EAC protection enables attackers to run unauthorized applications as if they were legitimate game processes, leading to potential security impacts:
+            Now, let’s talk about why this is actually serious and not just some coding shenanigan:
         </p>
-        <p>Attackers could access restricted resources within the protected application.</p>
-        <p>The vulnerability could be exploited to run malicious software disguised as a game client, risking system compromise.</p>        
+     
+            <p>Unauthorized Access: Attackers could use this method to make EAC protect unauthorized applications, potentially accessing restricted resources in the process.</p>
+            <p>Malware Disguises: This vulnerability could let malicious software masquerade as legitimate game clients, risking system compromise.</p>
         <p class="subheading">Conclusion</p>
         <p>
-            After finding the vulnerability, I immediately reported it to Epic Games. Unfortunately, upon submission, I was informed that my report was considered a duplicate of a similar issue raised in 2023, yet it has not been fixed. Anyways Thank you for reading my write-up!
+            After stumbling upon this vulnerability, I did the responsible thing and reported it to Epic Games. Their response? “Duplicate report.” Apparently, someone had raised a similar issue back in 2023. Fun fact: it still hasn’t been fixed.
         </p>
         <p>
-            <img src="/assets/eacReport.png" alt="Conclusion Image" width="300">
+            <img src="/assets/eacReport.png" alt="EAC Report" width="300">
         </p>
-              
-        <p class="subheading">Note</p>
         <p>
-            This write-up is intended for educational purposes only.
+            So, here we are. A vulnerability that lets you trick EAC into protecting anything with the same effort it takes to rename a file.
         </p>
-        
+        <p>Thanks for reading this (hopefully entertaining) write-up! And remember, this is for educational purposes only—don’t go causing chaos.</p>
     </main>
 </body>
 </html>
