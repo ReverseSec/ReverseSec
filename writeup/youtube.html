@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReverseSec</title>
+    <style>
+        body {
+            font-size: 20px;
+            font-family: 'Press Start 2P', monospace; 
+            background-color: white; 
+            color: rgb(22, 22, 22); 
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: blue; 
+            text-decoration: none; 
+        }
+        header, .content {
+            padding-left: 8px;
+        }
+        h1, h2, h3 {
+            color: rgb(0, 0, 0);
+            text-align: left;
+        }
+        .timestamp {
+            font-size: 15px; 
+            color: rgb(95, 95, 95); 
+            text-align: left;
+        }
+        .content {
+            width: 90%;
+            max-width: 800px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .content p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .subheading {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        pre {
+            font-size: 13px;
+            font-family: 'Courier New', monospace; 
+            color: rgb(48, 47, 47); 
+            background-color: #f8f9fa; 
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        video {
+            margin-top: 10px;
+            max-width: 100%;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="../index.html" style="text-decoration: none; color: inherit;">ReverseSec</a></h1>
+    </header>
+
+    <main class="content">
+        <h3>Tricking Users with YouTube's Redirect System</h3>
+        <p class="timestamp">idkhidden [2025-02-05]</p>
+        
+        <p class="subheading">Introduction</p>
+        <p>
+            This write-up will take you through how I accidentally stumbled upon a trick to manipulate YouTube's redirect system. It was a peaceful day of watching videos when I clicked on a link, and boom—YouTube’s redirect page showed up. Little did I know, this would lead to a discovery.
+        </p>
+        
+        <p class="subheading">Discovery</p>
+        <p>
+            Like many of my findings, this vulnerability wasn’t the result of deep research. It all started with my curiosity while clicking a link. To my surprise, I was redirected to YouTube's <code>redirect</code> page. This was something new for me, as I hadn’t encountered it before. Even though I'm not skilled in web research, I decided to investigate.
+        </p>
+        <p>
+            After some investigation, I realized that YouTube’s redirect page uses a "q" parameter to determine where you are being sent. Everything seemed fine, until I noticed that the URL could be manipulated in a way that would make YouTube think it’s redirecting to a site when it’s actually sending you to a different site.
+        </p>
+
+        <p class="subheading">Exploit</p>
+        <p>
+            Here’s where the fun begins by crafting a URL like this:
+        </p>
+        <pre>
+https://www.youtube.com/redirect?q=www.verytrustedurl.com\@reversesec.org
+        </pre>
+        <p>
+            The "\@" syntax exploits YouTube’s URL parser by tricking it into treating the part before the "\@" as the visible URL, while the actual redirect happens to the part after the "\@". The URL parser doesn't properly account for this manipulation, allowing attackers to spoof the destination.
+        </p>
+        
+
+        <p class="subheading">Proof of Concept (PoC)</p>
+
+        <video width="500" height="300" controls>
+            <source src="/assets/youtube.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <p class="subheading">Impact</p>
+        <p>
+            While this may seem like a harmless trick, there are significant implications if exploited maliciously. Imagine an attacker embedding this link in a phishing email. The user clicks it, and YouTube’s redirect page makes it look like they’re being sent to a trusted site—only to end up on a malicious one instead.
+        </p>
+
+        <p class="subheading">Conclusion</p>
+        <p>
+            The manipulation of the "q" parameter exploits how YouTube's parser processes URLs, allowing attackers to spoof the actual destination. After reporting the issue to YouTube, they reviewed it and confirmed that it does not qualify as a security vulnerability. I believe there is still room for improvement in their URL parsing to prevent potential misuse.
+        </p>
+        
+        <p>
+            <img src="/assets/youtubeReport.png" alt="YouTube Report" width="800">
+        </p>
+        <p>Thanks for reading this write-up! I hope it was informative.</p>
+    </main>
+</body>
+</html>
