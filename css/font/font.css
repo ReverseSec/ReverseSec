@@ -1,0 +1,31 @@
+
+@font-face {
+    font-family: 'TeXGyrePagella-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('TeXGyrePagella-Regular'), url('texgyrepagella-regular.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'TeXGyrePagella-Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('TeXGyrePagella-Italic'), url('texgyrepagella-italic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'TeXGyrePagella-Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('TeXGyrePagella-Bold'), url('texgyrepagella-bold.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'TeXGyrePagella-BoldItalic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('TeXGyrePagella-BoldItalic'), url('texgyrepagella-bolditalic.woff') format('woff');
+    }
