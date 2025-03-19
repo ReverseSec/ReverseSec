@@ -33,7 +33,7 @@
 <article>
 <h1>Tricking Easy Anti-Cheat into Protecting Any Application</h1>
 <div class="content">
-    <p>This article outlines a critical vulnerability discovered in Easy Anti-Cheat (EAC) that allows any application to bypass traditional protection mechanisms and gain the same level of security as a supported game. The exploit is alarmingly simple and requires minimal effort to execute.</p>
+    <p>This article outlines a critical vulnerability discovered in Easy Anti-Cheat (EAC) that allows any application to gain the same level of security as a supported game. The exploit is alarmingly simple and requires minimal effort to execute.</p>
 
     <h3 id="discovery">Discovery</h3>
     <p>The research began with an attempt to better understand how the EAC launcher functions and how it validates applications for protection. After reviewing the system, I noticed a significant flaw: the EAC launcher does not properly validate certificates.</p>
@@ -41,7 +41,7 @@
     <h3 id="exploit">Exploit</h3>
     <p>With the absence of certificate validation, I proceeded to replace the original game executable (in this case, Fortnite) with the application.</p>
     
-    <p>To ensure that the configuration matched the original game, I also updated the associated settings.json file to reflect the correct settings for Fortnite. Once the changes were made, I launched the EAC launcher. The launcher did not reject the application, and my application was now running with full EAC protection.</p>
+    <p>To ensure that the configuration matched the original game, I also updated the settings.json file to the correct settings for Fortnite. Once the changes were made, I launched the EAC launcher. The launcher did not reject the application, and my application was now running with full EAC protection.</p>
     
     <h3 id="poc">Proof of Concept (PoC)</h3>
     <p>
