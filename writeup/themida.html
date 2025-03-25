@@ -37,7 +37,7 @@
             <h3 id="exploit">Exploit</h3>
             <p>We first disable Themida’s anti-debugging features using ScyllaHide. This tool bypasses anti-debugging checks and ensures that the debugger can attach to the process without interference.</p>
 
-            <p>Next, a execute memory breakpoint is set on the .text section of the binary, Which is the first <section class=""></section></p>
+            <p>Next, a execute memory breakpoint is set on the .text section of the binary, Which is the first section header in the binary<section class=""></section></p>
 
             <p>Once the breakpoint is in place, we execute the binary. The execution stops at the breakpoint immediately. This allows us to inspect the memory, where we find that the Import Address Table (IAT) has been fully restored and the binary is in its unpacked state.</p>
 
