@@ -49,7 +49,7 @@
             <p>I found that YouTube uses the q parameter to handle external links. However, by manipulating the URL structure, it was possible to trick the system into displaying a trusted domain while redirecting to a different site.</p>
 
             <h3 id="exploit">Exploit</h3>
-            <p>The issue lies in how YouTube parses URLs. By using the \@ symbol, an attacker can craft a misleading link:</p>
+            <p>The issue lies in how YouTube sanitize URLs. By using the \@ symbol, an attacker can craft a misleading link:</p>
 
             <p>https://www.youtube.com/redirect?q=www.verytrustedurl.com\@reversesec.org</p>
 
@@ -64,7 +64,7 @@
                 </video>
             </p>
             <h3 id="conclusion">Conclusion</h3>
-            <p>While seemingly minor, this issue could be used in phishing campaigns to bypass user skepticism, as the YouTube redirect page adds legitimacy to the spoofed link. I reported this behavior to YouTube, but they determined it was not a security vulnerability. Despite this, refining their URL parsing could prevent misuse.</p>
+            <p>While seemingly minor, this issue could be used in phishing campaigns to bypass user skepticism, as the YouTube redirect page adds legitimacy to the spoofed link. I reported this behavior to YouTube, but they determined it was not a security vulnerability. Despite this, refining their URL sanitizer could prevent misuse.</p>
 
           </div>
         </article>
@@ -72,3 +72,4 @@
     </div>
   </body>
 </html>
+
