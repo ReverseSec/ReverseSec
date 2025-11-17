@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta property="og:title" content="ReverseSec">
+    <meta property="og:description" content="Tricking Easy Anti-Cheat into Protecting Any Application">
+    <meta property="og:image" content="https://reversesec.org/assets/eac.png">
+    <meta property="og:image:width" content="1280"> 
+    <meta property="og:image:height" content="720">
+    <meta property="og:url" content="https://reversesec.org/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ReverseSec">
+    <meta name="twitter:description" content="Tricking Easy Anti-Cheat into Protecting Any Application">
+    <meta name="twitter:image" content="https://reversesec.org/assets/eac.png">
+    <meta name="twitter:url" content="https://reversesec.org/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
+    <meta charset="utf-8"/>
+    <title>ReverseSec</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/assets/logo.png" type="image/png" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <header class="site-header">
+        <div class="header-left">
+          <a href="/" class="header-logo-link">
+            <img src="/assets/logo.png" alt="ReverseSec Logo" class="header-logo-img">
+            <span class="header-logo-text">ReverseSec</span>
+          </a>
+          <p class="header-tagline">Small research team where we like to break into security.</p>
+        </div>
+        <nav class="site-nav"><a href="mailto:reversesec@proton.me">Contact</a></nav>
+      </header>
+
+      <div id="content">
+	
+<article>
+<h1>Tricking Easy Anti-Cheat into Protecting Any Application</h1>
+<p class="byline">idkhidden | October 28, 2024</p>
+<div class="content">
+    <h3 id="introduction">Introduction: Hiding Behind the Shield</h3>
+    <p>Easy Anti-Cheat (EAC) is a popular anti-cheat used in many multiplayer games to stop cheaters. It runs with high permissions to watch the game and block cheats. This article is about a big flaw we found in EAC. It lets an attacker use EAC to protect any program they want, even malware. The trick is very simple and doesn't need any complex code.</p>
+
+    <h3 id="discovery">Discovery</h3>
+    <p>We started by looking at how an EAC-protected game starts up. Usually, a launcher (`EasyAntiCheat_launcher.exe`) starts the anti-cheat service and then runs the game itself. The launcher is supposed to check that the game executable is the real, signed one before protecting it. But we found that the EAC launcher wasn't properly checking the certificate of the game it was launching.</p>
+            
+    <h3 id="exploit">Exploit</h3>
+    <p>Because it doesn't validate the certificate, EAC can't be sure it's launching the right game. Here's how to exploit it:</p>
+    <p>First, we navigate to the game directory of an EAC-protected game (e.g., Fortnite). Next, we delete the `Certificates` folder within the `EasyAntiCheat` directory. This step prevents the launcher from using it certificate, forcing a less secure validation path. Finally, we replace the legitimate game executable (e.g., `FortniteClient-Win64-Shipping.exe`) with any other application, such as `notepad.exe` or, more maliciously, a custom-coded program. The replacement binary must have the exact same name as the original.</p>
+    
+    <p>When you run the normal EAC launcher, it starts without any errors. But instead of the game, it launches your swapped program and gives it full EAC protection. This means your app is now protected by a strong anti-cheat, which makes it much harder for anyone to analyze or reverse engineer.</p>
+    
+    <h3 id="poc">Proof of Concept (PoC)</h3>
+    <div class="code-editor-demo">
+      <div class="editor-header">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      </div>
+      <video src="/assets/EAC.mp4" controls class="poc-video"></video>
+    </div>
+
+    <h3 id="conclusion">Conclusion and Impact</h3>
+    <p>This flaw means a anti-cheat can be used for attacks. A malware creator could use this trick to hide their virus with EAC's protection, making it much harder for antivirus programs and researchers to find. We reported this to Epic Games, and they said it was a "duplicate report" from 2023, but the bug still wasn't fixed when we found it.</p>
+    </article>
+    </div>
+    </body>
+    </html>

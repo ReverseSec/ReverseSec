@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
+    <meta property="og:title" content="ReverseSec">
+    <meta property="og:description" content="Tricking Users with YouTube's Redirect System">
+    <meta property="og:image" content="https://reversesec.org/assets/youtube.png">
+    <meta property="og:image:width" content="1280"> 
+    <meta property="og:image:height" content="720">
+    <meta property="og:url" content="https://reversesec.org/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ReverseSec">
+    <meta name="twitter:description" content="Tricking Users with YouTube's Redirect System">
+    <meta name="twitter:image" content="https://reversesec.org/assets/youtube.png">
+    <meta name="twitter:url" content="https://reversesec.org/">
+
+    <title>ReverseSec</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/assets/logo.png" type="image/png" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <header class="site-header">
+        <div class="header-left">
+          <a href="/" class="header-logo-link">
+            <img src="/assets/logo.png" alt="ReverseSec Logo" class="header-logo-img">
+            <span class="header-logo-text">ReverseSec</span>
+          </a>
+          <p class="header-tagline">Small research team where we like to break into security.</p>
+        </div>
+        <nav class="site-nav"><a href="mailto:reversesec@proton.me">Contact</a></nav>
+      </header>
+
+      <div id="content">
+        <article>
+          <h1>Tricking Users with YouTube's Redirect System</h1>
+          <p class="byline">idkhidden | Feb 6, 2025</p>
+          <div class="content">
+            <h3 id="introduction">Introduction: The Illusion of Trust</h3>
+            <p>Websites like YouTube use redirect pages to warn you when you're about to visit an external link. You trust these pages to show you the correct destination. This write-up is about a flaw we found in YouTube's redirect system that could be used to trick people. It let an attacker create a link that looked safe but actually sent the user to a malicious website.</p>
+
+            <h3 id="discovery">Discovery</h3>
+            <p>We were looking at how YouTube handles external links and noticed it uses a `q` parameter in its `/redirect` URL to define the destination. The system is supposed to read this link, show it to the user, and then redirect. The problem was in how it read the link. With a specially crafted URL, you could confuse the system so it would show one domain but actually go to a different one.</p>
+
+            <h3 id="exploit">Exploit</h3>
+            <p>The exploit works by taking advantage of how different systems parse the `\@` characters. YouTube likely allows the `@` symbol in URLs since it's used for channel pages (e.g., `youtube.com/@channel`). The vulnerability is triggered by adding a backslash `\` before the `@`. When YouTube's redirect service parsed the URL, the `\` caused it to display the entire string as the destination, making it look like a safe link. However, when the user clicked to proceed, the browser correctly interpreted the `@` as a delimiter for user info and a domain, sending them to the malicious site. An attacker could make a tricky link like this:</p>
+
+            <div class="code-editor-demo">
+              <div class="editor-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              </div>
+              <pre><code>https://www.youtube.com/redirect?q=www.verytrustedurl.com\@reversesec.org</code></pre>
+            </div>
+
+            <p>On the redirect page, YouTube would show the destination as `www.verytrustedurl.com@reversesec.org`, which is misleading. When the user clicks "Go to site," the browser ignores the backslash and treats `www.verytrustedurl.com` as user info, navigating to the actual domain: `reversesec.org`. This discrepancy is the core of the vulnerability.</p>
+
+            <h3 id="poc">Proof of Concept (PoC)</h3>
+            <div class="code-editor-demo">
+              <div class="editor-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              </div>
+              <video src="/assets/youtube.mp4" controls class="poc-video"></video>
+            </div>
+
+            <h3 id="conclusion">Conclusion</h3>
+            <p>Even if it seems small, this kind of bug is a big risk for phishing. People trust the warning pages on sites like YouTube. An attacker could use that trust to send users to fake login pages to steal passwords or spread malware. We reported it to Google, but they first closed it as "Intended Behavior." After we tweeted about it, it got more attention and they fixed it. It just goes to show that even small bugs can be a big deal for security.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>
