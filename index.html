@@ -1,85 +1,149 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
-    <meta property="og:title" content="ReverseSec">
-    <meta property="og:description" content="Small research team where we like to break into security.">
-    <meta property="og:image" content="https://reversesec.org/assets/banner.png">
-    <meta property="og:image:width" content="1280"> 
-    <meta property="og:image:height" content="720">
-    <meta property="og:url" content="https://reversesec.org/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="ReverseSec" />
+    <meta property="og:description" content="We are a small group of researchers who like breaking into stuff." />
+    <meta property="og:image" content="https://reversesec.org/assets/banner.png" />
+    <meta property="og:url" content="https://reversesec.org/" />
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ReverseSec">
-    <meta name="twitter:description" content="Small research team where we like to break into security.">
-    <meta name="twitter:image" content="https://reversesec.org/assets/banner.png">
-    <meta name="twitter:url" content="https://reversesec.org/">
-	  
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ReverseSec" />
+    <meta name="twitter:description" content="We are a small group of researchers who like breaking into stuff." />
+    <meta name="twitter:image" content="https://reversesec.org/assets/banner.png" />
+
     <title>ReverseSec</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+:root {
+  color-scheme: dark;
+  color: #ffffff;
+  background: #0d0811;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #0A0A0A;
+  color: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.site-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.header-logo {
+  width: 40px;
+  height: auto;
+  display: block;
+}
+
+.hero-section {
+  max-width: 520px;
+  width: min(520px, 100%);
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+.hero-section h1 {
+  display: none;
+}
+
+.eyebrow,
+.hero-copy {
+  font-family: Georgia, Cambria, 'Times New Roman', serif;
+}
+
+.eyebrow {
+  font-size: 1rem;
+  line-height: 2.1;
+  letter-spacing: 0.01em;
+  color: #f4f3ee;
+  margin-bottom: 1.4rem;
+  max-width: 53ch;
+}
+
+.hero-copy {
+  font-size: 1rem;
+  line-height: 2.25;
+  color: #e8e5df;
+  margin-bottom: 1.4rem;
+  max-width: 53ch;
+}
+
+.contact a {
+  color: #e8e5df;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 229, 223, 0.4);
+  padding-bottom: 0.08em;
+}
+
+.contact a:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-section {
+    padding-top: 3rem;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2.5rem, 10vw, 3.6rem);
+  }
+}
+    </style>
     <link rel="icon" href="/assets/logo.png" type="image/png" />
   </head>
   <body>
-    <div id="wrapper">
+    <div class="page-shell">
       <header class="site-header">
-        <div class="header-left">
-          <a href="/" class="header-logo-link">
-            <img src="/assets/logo.png" alt="ReverseSec Logo" class="header-logo-img">
-            <span class="header-logo-text">ReverseSec</span>
-          </a>
-          <p class="header-tagline">Small research team where we like to break into security.</p>
-        </div>
-        <nav class="site-nav"><a href="mailto:reversesec@proton.me">Contact</a></nav>
+        <img src="/assets/logo.png" alt="ReverseSec logo" class="header-logo" />
       </header>
 
-      <div id="content">
-	
-	<h2>Research</h2>
-
-<ul id="research">
-
-<li>
-  <div class="research-card">
-    <a href="/research/youtube.html" class="card-link">
-      <div class="card-image-container">
-        <img src="/assets/youtube.png" alt="YouTube Redirect Writeup Banner" class="writeup-banner">
-      </div>
-      <div class="card-content">
-        <h3 class="card-title">Tricking Users with YouTube's Redirect System</h3>
-        <p class="card-desc">Exploiting YouTube’s URL parsing to disguise redirections.</p>
-        <div class="card-meta">
-          <span>idkhidden</span>
-          <span class="separator">|</span>
-          <span>Feb 6, 2025</span>
-        </div>
-      </div>
-    </a>
-  </div>
-</li>
-
-<li>
-  <div class="research-card">
-    <a href="/research/eac.html" class="card-link">
-      <div class="card-image-container">
-        <img src="/assets/eac.png" alt="EAC Writeup Banner" class="writeup-banner">
-      </div>
-      <div class="card-content">
-        <h3 class="card-title">Tricking Easy Anti-Cheat into Protecting Any Application</h3>
-        <p class="card-desc">A flaw in EAC that allows unauthorized applications to gain full protection.</p>
-        <div class="card-meta">
-          <span>idkhidden</span>
-          <span class="separator">|</span>
-          <span>October 28, 2024</span>
-        </div>
-      </div>
-    </a>
-  </div>
-</li>
-</ul>
-
-	
-      </div>
+      <main class="hero-section">
+        <p class="eyebrow"><em>ReverseSec</em> is a security research team. We are a small group of researchers who like breaking into stuff.</p>
+        <p class="hero-copy">We identify vulnerabilities across public and private sector systems.</p>
+        <p class="hero-copy contact"><a href="mailto:reversesec@proton.me">Shoot us a message</a></p>
+      </main>
     </div>
   </body>
 </html>
