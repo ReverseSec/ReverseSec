@@ -1,150 +1,146 @@
 <!doctype html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content="ReverseSec" />
-    <meta property="og:description" content="We are a small group of researchers who like breaking into stuff." />
-    <meta property="og:image" content="https://reversesec.org/assets/banner.png" />
-    <meta property="og:url" content="https://reversesec.org/" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ReverseSec" />
-    <meta name="twitter:description" content="We are a small group of researchers who like breaking into stuff." />
-    <meta name="twitter:image" content="https://reversesec.org/assets/banner.png" />
+  <meta property="og:title" content="ReverseSec">
+  <meta property="og:description" content="We are a small group of researchers who just like to break security.">
+  <meta property="og:image" content="https://reversesec.org/assets/banner.png">
+  <meta property="og:url" content="https://reversesec.org/">
 
-    <title>ReverseSec</title>
-    <style>
-:root {
-  color-scheme: dark;
-  color: #ffffff;
-  background: #0d0811;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ReverseSec">
+  <meta name="twitter:description" content="We are a small group of researchers who just like to break security.">
+  <meta name="twitter:image" content="https://reversesec.org/assets/banner.png">
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <title>ReverseSec</title>
 
-body {
-  min-height: 100vh;
-  background: #0A0A0A;
-  color: #ffffff;
-}
+  <link rel="icon" href="/assets/logo.png" type="image/png">
 
-html {
-  scroll-behavior: smooth;
-}
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #fff;
+      background: #0a0a0a;
+    }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-a:hover {
-  opacity: 0.85;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.page-shell {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
+    body {
+      min-height: 100vh;
+      background: #0a0a0a;
+      color: #fff;
+    }
 
-.site-header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2rem;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.header-logo {
-  width: 40px;
-  height: auto;
-  display: block;
-}
+    a:hover {
+      opacity: 0.85;
+    }
 
-.hero-section {
-  max-width: 520px;
-  width: min(520px, 100%);
-  margin: 0 auto;
-  padding: 0;
-  text-align: left;
-}
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
 
-.hero-section h1 {
-  display: none;
-}
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 2rem;
+    }
 
-.eyebrow,
-.hero-copy {
-  font-family: Georgia, Cambria, 'Times New Roman', serif;
-}
+    .logo {
+      width: 40px;
+      height: auto;
+      display: block;
+    }
 
-.eyebrow {
-  font-size: 1rem;
-  line-height: 2.1;
-  letter-spacing: 0.01em;
-  color: #f4f3ee;
-  margin-bottom: 1.4rem;
-  max-width: 53ch;
-}
+    .content {
+      width: min(520px, 100%);
+      margin: 0 auto;
+      text-align: left;
+    }
 
-.hero-copy {
-  font-size: 1rem;
-  line-height: 2.25;
-  color: #e8e5df;
-  margin-bottom: 1.4rem;
-  max-width: 53ch;
-}
+    .text {
+      max-width: 53ch;
+      font-family: Georgia, Cambria, "Times New Roman", serif;
+      font-size: 1rem;
+      color: #e8e5df;
+    }
 
-.contact a {
-  color: #e8e5df;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(232, 229, 223, 0.4);
-  padding-bottom: 0.08em;
-}
+    .intro {
+      line-height: 2.1;
+      color: #f4f3ee;
+      margin-bottom: 1.4rem;
+    }
 
-.contact a:hover {
-  opacity: 0.85;
-}
+    .description {
+      line-height: 2.25;
+      margin-bottom: 1.4rem;
+    }
 
-@media (max-width: 720px) {
-  .site-header {
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 1.5rem;
-  }
+    .contact {
+      line-height: 1.6;
+    }
 
-  .header-logo {
-    width: 36px;
-  }
+    .contact a {
+      border-bottom: 1px solid rgba(232, 229, 223, 0.4);
+      padding-bottom: 0.08em;
+    }
 
-  .hero-section {
-    padding-top: 1.5rem;
-  }
-}
-    </style>
-    <link rel="icon" href="/assets/logo.png" type="image/png" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="site-header">
-        <img src="/assets/logo.png" alt="ReverseSec logo" class="header-logo" />
-      </header>
+    @media (max-width: 720px) {
+      .header {
+        padding-bottom: 1.5rem;
+      }
 
-      <main class="hero-section">
-        <p class="eyebrow"><em>ReverseSec</em> is a security research team. We are a small group of researchers who just like to break security.</p>
-        <p class="hero-copy">We identify vulnerabilities across public and private sector systems.</p>
-        <p class="hero-copy contact"><a href="mailto:reversesec@proton.me">Shoot us a email</a></p>
-      </main>
-    </div>
-  </body>
+      .logo {
+        width: 36px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="/assets/logo.png" alt="ReverseSec logo" class="logo">
+    </header>
+
+<main class="content">
+  <p class="text intro">
+    <em>ReverseSec</em> is a security research team. We are a small group
+    of researchers who just like to break security.
+  </p>
+
+  <p class="text description">
+    We focus on reverse engineering and vulnerability research, identifying vulnerabilities across public and private sector systems.
+  </p>
+
+  <p class="text contact">
+    <a href="mailto:reversesec@proton.me">Shoot us an email</a>
+  </p>
+</main>
+
+  </div>
+</body>
 </html>
