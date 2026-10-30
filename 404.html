@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+
+  <title>404 — Page not found</title>
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #fff;
+      background: #0a0a0a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0a0a0a;
+      color: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: 0.85;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 2rem;
+    }
+
+    .logo {
+      width: 40px;
+      height: auto;
+      display: block;
+    }
+
+    .content {
+      width: min(520px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .text {
+      max-width: 53ch;
+      font-family: Georgia, Cambria, "Times New Roman", serif;
+      font-size: 1rem;
+      color: #e8e5df;
+    }
+
+    .code {
+      margin-bottom: 0.8rem;
+      color: #f4f3ee;
+      font-size: clamp(3rem, 12vw, 5rem);
+      line-height: 1;
+    }
+
+    .message {
+      line-height: 2.25;
+      margin-bottom: 1.4rem;
+    }
+
+    .home-link {
+      line-height: 1.6;
+    }
+
+    .home-link a {
+      border-bottom: 1px solid rgba(232, 229, 223, 0.4);
+      padding-bottom: 0.08em;
+    }
+
+    @media (max-width: 720px) {
+      .header {
+        padding-bottom: 1.5rem;
+      }
+
+      .logo {
+        width: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <a href="/" aria-label="ReverseSec home">
+        <img src="/assets/logo.png" alt="ReverseSec logo" class="logo">
+      </a>
+    </header>
+
+    <main class="content">
+      <h1 class="text code">404</h1>
+      <p class="text message">This page couldn't be found.</p>
+      <p class="text home-link">
+        <a href="/">Back to home</a>
+      </p>
+    </main>
+  </div>
+</body>
+</html>
